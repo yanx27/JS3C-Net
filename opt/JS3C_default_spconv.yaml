@@ -1,0 +1,76 @@
+GENERAL:
+  task: train  # train, test
+  manual_seed: 123
+  dataset_dir: /home/yxu/data/semantic_kitti/dataset/
+  debug: False
+
+DATA:
+  dataset: SemanticKITTI
+  classes_seg: 19
+  classes_completion: 20
+
+Segmentation:
+  model_name: SubSpconv
+  m: 16 # 16 or 32
+  block_residual: False
+  block_reps: 1
+  use_coords: False
+  feature_dims: [16,32,48,64,80,96,112]
+
+  input_channel: 3
+  scale: 10   # voxel_size = 1 / scale, scale 10 (1cm)
+  full_scale: [32, 1024]
+  max_npoint: 250000
+  mode: 4 # 4=mean
+
+Completion:
+  model_name: SSCNet
+  m: 32
+  feeding: feat # ['feat', 'prob', 'both']
+  no_fuse_feat: False
+  block_residual: True
+  block_reps: 2
+  use_coords: False
+  mode: 0
+  full_scale: [256, 256, 32]
+  interaction: False
+  pooling_type: mean
+  fuse_k: 5
+  point_cloud_range: [0, -25.6, -2, 51.2, 25.6, 4.4]
+  voxel_size: 0.2
+  search_k: 8
+  feat_relation: False
+
+TRAIN:
+  epochs: 100
+  train_workers: 10 # data loader workers
+  optim: Adam # Adam or SGD
+  batch_size: 1
+  learning_rate: 0.001
+  lr_decay: 0.7
+  decay_step: 10
+  momentum: 0.9
+  weight_decay: 0.0001
+  save_freq: 16  # also eval_freq
+  uncertainty_loss: True
+  loss_weight: [1.0, 0.8] # semantic_loss, completion_loss
+  pretrain_path:
+  train_from: 0
+  seg_num_per_class: [55437630, 320797, 541736, 2578735, 3274484, 552662, 184064, 78858, 240942562, 17294618, 170599734, 6369672, 230413074, 101130274, 476491114, 9833174, 129609852, 4506626, 1168181]
+  complt_num_per_class: [7632350044, 15783539,  125136, 118809, 646799, 821951, 262978, 283696, 204750, 61688703, 4502961, 44883650, 2269923, 56840218, 15719652, 158442623, 2061623, 36970522, 1151988, 334146]
+
+TEST:
+  split: val
+  test_epoch: 384
+  test_workers: 16
+  test_seed: 567
+
+  TEST_NMS_THRESH: 0.3
+  TEST_SCORE_THRESH: 0.09
+  TEST_NPOINT_THRESH: 100
+
+  eval: True
+  save_semantic: False
+  save_pt_offsets: False
+  save_instance: False
+
