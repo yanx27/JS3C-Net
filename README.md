@@ -92,7 +92,7 @@ We trained our model on a single Nvidia Tesla V100 GPU with batch size 2.
 
 | Model | #Param | Segmentation | Completion | Checkpoint |
 |--|--|--|--|--|
-|JS3C-Net| 268W | 66.0 | 56.6 | [18.5MB](log/JS3C-Net-kitti) |
+|JS3C-Net| 2.69M | 66.0 | 56.6 | [18.5MB](log/JS3C-Net-kitti) |
 
 ## Results on SemanticKITTI Benchmark
 Quantitative results on **SemanticKITTI Benchmark** at the submisison time.
