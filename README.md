@@ -88,6 +88,8 @@ $ python test_poss_segment.py --gpu 0 --log_dir JS3C-Net-POSS
 ```
 
 ## Pretrained Model
+We trained our model on a single Nvidia Tesla V100 GPU with batch size 2.
+
 | Model | #Param | Segmentation | Completion | Checkpoint |
 |--|--|--|--|--|
 |JS3C-Net| 268W | 66.0 | 56.6 | [18.5MB](log/JS3C-Net-kitti) |
