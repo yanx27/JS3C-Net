@@ -31,7 +31,8 @@ Installation instructions for Ubuntu 16.04:
 * Make sure <a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html">CUDA</a>  and <a href="https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html">cuDNN</a> are installed. Only this configurations has been tested: 
      - Python 3.6.9, Pytorch 1.3.1, CUDA 10.1;
 * Compile the customized operators by `sh complile.sh` in `/lib`. 
-* Install [spconv](https://github.com/traveller59/spconv)  in `/lib/spconv`. We use the same version with [PointGroup](https://github.com/Jia-Research-Lab/PointGroup), you can install it according to the instruction.
+* Install [spconv1.0](https://github.com/traveller59/spconv)  in `/lib/spconv`. We use the same version with [PointGroup](https://github.com/Jia-Research-Lab/PointGroup), you can install it according to the instruction. Higher version spconv may cause issues.
+
 
 ### Data Preparation
 * SemanticKITTI and SemanticPOSS datasets can be found in [semantickitti-page](http://semantic-kitti.org/dataset.html#download) and [semanticposs-page](http://www.poss.pku.edu.cn/semanticposs.html). 
