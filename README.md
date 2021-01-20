@@ -61,7 +61,7 @@ SemanticKITTI(POSS)
 │   │  ├── ... ...
 
 ```
-* Note that the data for official SemanticKITTI SSC benchmark only contains 1/5 of the whole sequence.
+* Note that the data for official SemanticKITTI SSC benchmark only contains 1/5 of the whole sequence and they provide all extracted SSC data for the training set [here](http://semantic-kitti.org/assets/data_odometry_voxels_all.zip).
 
 ### SemanticKITTI
 #### Training
