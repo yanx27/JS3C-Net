@@ -43,7 +43,9 @@ val_reps = args.num_votes
 
 output_dir = model_path + '/dump/'
 if not os.path.exists(output_dir): os.mkdir(output_dir)
-submit_dir = output_dir + '/submit_'+ datetime.now().strftime('%Y_%m_%d')
+output_dir = output_dir + 'segmentation'
+if not os.path.exists(output_dir): os.mkdir(output_dir)
+submit_dir = output_dir + '/submit_' + args.dataset + datetime.now().strftime('%Y_%m_%d')
 if not os.path.exists(submit_dir): os.mkdir(submit_dir)
 
 use_cuda = torch.cuda.is_available()

@@ -5,30 +5,32 @@
 @file: test_poss_segment.py
 @time: 2020/9/22 14:08
 '''
-from utils.np_ioueval import iouEval
-from datetime import datetime
-import sparseconvnet as scn
-from utils import laserscan
-import torch.nn as nn
-from tqdm import tqdm
-import numpy as np
-import importlib
-import argparse
+import sys
+import os
 import torch
 import time
 import math
 import yaml
 import json
-import sys
-import os
+import importlib
+import argparse
 
+import torch.nn as nn
+from tqdm import tqdm
+import numpy as np
+
+from models import model_utils
+from datetime import datetime
+import sparseconvnet as scn
+from utils import laserscan
+from utils.np_ioueval import iouEval
 
 '''Inference'''
 def parse_args():
     '''PARAMETERS'''
     parser = argparse.ArgumentParser('Model')
     parser.add_argument('--gpu', type=str, default='0', help='specify gpu device')
-    parser.add_argument('--log_dir', type=str, default='test', help='Experiment root')
+    parser.add_argument('--log_dir', type=str, default='JS3C-Net-POSS', help='Experiment root')
     parser.add_argument('--num_votes', type=int, default=10, help='Aggregate segmentation scores with voting [default: 10]')
     return parser.parse_args()
 
@@ -41,7 +43,9 @@ val_reps = args.num_votes
 
 output_dir = model_path + '/dump/'
 if not os.path.exists(output_dir): os.mkdir(output_dir)
-submit_dir = output_dir + '/submit_'+ datetime.now().strftime('%Y_%m_%d')
+output_dir = output_dir + 'segmentation_poss'
+if not os.path.exists(output_dir): os.mkdir(output_dir)
+submit_dir = output_dir + '/submit_' + datetime.now().strftime('%Y_%m_%d')
 if not os.path.exists(submit_dir): os.mkdir(submit_dir)
 
 use_cuda = torch.cuda.is_available()
@@ -62,8 +66,9 @@ class J3SC_Net(nn.Module):
         super().__init__()
         self.seg_head = seg_model(config)
         self.complet_head = complet_model(config)
-        self.seg_sigma = nn.Parameter(torch.Tensor(1).uniform_(0.2, 1), requires_grad=True)
-        self.complet_sigma = nn.Parameter(torch.Tensor(1).uniform_(0.2, 1), requires_grad=True)
+        self.voxelpool = model_utils.VoxelPooling(config)
+        self.seg_sigmas_sq = nn.Parameter(torch.Tensor(1).uniform_(0.2, 1), requires_grad=True)
+        self.complet_sigmas_sq = nn.Parameter(torch.Tensor(1).uniform_(0.2, 1), requires_grad=True)
 
     def forward(self, x):
         seg_output, _ = self.seg_head(x)
