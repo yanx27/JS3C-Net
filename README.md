@@ -89,7 +89,7 @@ $ python test_poss_segment.py --gpu 0 --log_dir JS3C-Net-POSS
 ```
 
 ## Pretrained Model
-We trained our model on a single Nvidia Tesla V100 GPU with batch size 6. If you want to train on the TITAN GPU, you can choose batch size as 2.
+We trained our model on a single Nvidia Tesla V100 GPU with batch size 6. If you want to train on the TITAN GPU, you can choose batch size as 2. Please modify `dataset_dir` in `args.txt` to your path.
 
 | Model | #Param | Segmentation | Completion | Checkpoint |
 |--|--|--|--|--|
