@@ -2,8 +2,8 @@
   "GENERAL": {
     "task": "train",
     "manual_seed": 123,
-    "dataset_dir": "/home/yxu/data/semantic_kitti/dataset/",
-    "debug": true
+    "dataset_dir": "/dataset/semantic_kitti/dataset/",
+    "debug": false
   },
   "DATA": {
     "dataset": "SemanticKITTI",
@@ -125,19 +125,6 @@
       1151988,
       334146
     ]
-  },
-  "TEST": {
-    "split": "val",
-    "test_epoch": 384,
-    "test_workers": 16,
-    "test_seed": 567,
-    "TEST_NMS_THRESH": 0.3,
-    "TEST_SCORE_THRESH": 0.09,
-    "TEST_NPOINT_THRESH": 100,
-    "eval": true,
-    "save_semantic": false,
-    "save_pt_offsets": false,
-    "save_instance": false
   },
   "gpu": "3",
   "config": "opt/JS3C_default_v2.yaml",

@@ -4,15 +4,6 @@ Author: Xu Yan
 File: test_kitti_segment.py
 Date: 2020/6/19 19:24
 """
-from utils.np_ioueval import iouEval
-from datetime import datetime
-import sparseconvnet as scn
-from utils import laserscan
-import torch.nn as nn
-from tqdm import tqdm
-import numpy as np
-import importlib
-import argparse
 import time
 import math
 import yaml
@@ -21,6 +12,17 @@ import torch
 import sys
 import os
 
+import numpy as np
+import importlib
+import argparse
+import torch.nn as nn
+from tqdm import tqdm
+
+from models import model_utils
+from datetime import datetime
+import sparseconvnet as scn
+from utils import laserscan
+from utils.np_ioueval import iouEval
 
 '''Inference'''
 def parse_args():
@@ -62,6 +64,7 @@ class J3SC_Net(nn.Module):
         super().__init__()
         self.seg_head = seg_model(config)
         self.complet_head = complet_model(config)
+        self.voxelpool = model_utils.VoxelPooling(config)
         self.seg_sigmas_sq = nn.Parameter(torch.Tensor(1).uniform_(0.2, 1), requires_grad=True)
         self.complet_sigmas_sq = nn.Parameter(torch.Tensor(1).uniform_(0.2, 1), requires_grad=True)
 
