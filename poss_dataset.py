@@ -64,7 +64,7 @@ class get_dataset(Dataset):
                                8: 'fence', 9: 'bike', 10: 'ground'}
 
         for sequence in SPLIT_SEQUENCES[split]:
-            complete_path = os.path.join(config['GENERAL']['dataset_dir'], "sequences", sequence, "voxels_align")
+            complete_path = os.path.join(config['GENERAL']['dataset_dir'], "sequences", sequence, "voxels")
             if not os.path.exists(complete_path): raise RuntimeError("Voxel directory missing: " + complete_path)
 
             files = os.listdir(complete_path)
