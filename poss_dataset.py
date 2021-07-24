@@ -146,15 +146,17 @@ class get_dataset(Dataset):
             completion_collection[typ] = scan_data
 
         '''Load Segmentation Data'''
-        seg_point_name = self.seg_path + self.files['input'][t][self.files['input'][t].find('sequences'):].replace('voxels_align','velodyne')
-        seg_label_name = self.seg_path + self.files['label'][t][self.files['label'][t].find('sequences'):].replace('voxels_align','labels')
+        seg_point_name = self.seg_path + self.files['input'][t][self.files['input'][t].find('sequences'):].replace('voxels','velodyne')
+        seg_label_name = self.seg_path + self.files['label'][t][self.files['label'][t].find('sequences'):].replace('voxels','labels')
 
-        scan.open_scan(seg_point_name)
-        scan.open_label(seg_label_name)
-        remissions = scan.remissions
-        xyz = scan.points
-        label = scan.sem_label
+        points = np.fromfile(seg_point_name, dtype=np.float32)
+        points = np.reshape(points, (-1, 4))  # x,y,z,intensity
+        xyz = points[:,0:3]
+        remissions = points[:,3]
+        label = np.fromfile(seg_label_name, dtype=np.uint32) & 0xffff
         label = self.seg_remap_lut[label]
+
+        if self.config.seg_usexyz:
 
         if self.config['Segmentation']['use_coords']:
             feature = np.concatenate([xyz, remissions.reshape(-1, 1)], 1)
