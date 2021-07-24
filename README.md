@@ -37,7 +37,7 @@ Installation instructions for Ubuntu 16.04:
 ### Data Preparation
 * SemanticKITTI and SemanticPOSS datasets can be found in [semantickitti-page](http://semantic-kitti.org/dataset.html#download) and [semanticposs-page](http://www.poss.pku.edu.cn/semanticposs.html). 
 * Download the files related to **semantic segmentation** and extract everything into the same folder. 
-* Use [voxelizer](https://github.com/jbehley/voxelizer) generate ground truths of **semantic scene completion**, where following parameters are used. We provide pre-processed SemanticPOSS SSC labels [here](https://drive.google.com/file/d/1O2Tg-r5egVPLNboRwd321sobJvgmFUvI/view?usp=sharing).
+* Use [voxelizer](https://github.com/jbehley/voxelizer) generate ground truths of **semantic scene completion**, where following parameters are used. We provide pre-processed SemanticPOSS SSC labels [here](https://drive.google.com/file/d/1AGagbRwQe3aR8liaC4YnkMW1iwSCLvvN/view?usp=sharing).
 ```angular2
 min range: 2.5
 max range: 70
