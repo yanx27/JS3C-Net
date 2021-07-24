@@ -13,6 +13,7 @@ Segmentation:
   model_name: SubSparseConv
   m: 16 # 16 or 32
   block_residual: False
+  seg_groups: 1
   block_reps: 1
   use_coords: False
   feature_dims: [16,32,48,64,80,96,112]
