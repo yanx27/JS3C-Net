@@ -156,8 +156,6 @@ class get_dataset(Dataset):
         label = np.fromfile(seg_label_name, dtype=np.uint32) & 0xffff
         label = self.seg_remap_lut[label]
 
-        if self.config.seg_usexyz:
-
         if self.config['Segmentation']['use_coords']:
             feature = np.concatenate([xyz, remissions.reshape(-1, 1)], 1)
         else:
