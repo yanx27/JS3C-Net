@@ -62,6 +62,7 @@ SemanticKITTI(POSS)
 
 ```
 * Note that the data for official SemanticKITTI SSC benchmark only contains 1/5 of the whole sequence and they provide all extracted SSC data for the training set [here](http://semantic-kitti.org/assets/data_odometry_voxels_all.zip).
+* (**New**) In this repo, we use old version of SemanticKITTI, and there is a bug of generating SSC data contains a wrong shift on upwards direction (see [issue](https://github.com/PRBonn/semantic-kitti-api/issues/49)). Therefore, we add an additional shifting to align their old version dataset [here](https://github.com/yanx27/JS3C-Net/blob/3433634c9cda7e8ed5c623e0ae9a9f2f2c5cee09/test_kitti_ssc.py#L94), and if you use the newest version of data, you can delete it. Also, you can check the alignment ratio by using `--debug`. 
 
 ### SemanticKITTI
 #### Training
