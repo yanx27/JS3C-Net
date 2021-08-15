@@ -10,10 +10,13 @@ Xu Yan, Jiantao Gao, Jie Li, Ruimao Zhang, [Zhen Li*](https://mypage.cuhk.edu.cn
 
 If you find our work useful in your research, please consider citing:
 ```
-@InProceedings{yan2021sparse,
+@inproceedings{yan2021sparse,
   title={Sparse Single Sweep LiDAR Point Cloud Segmentation via Learning Contextual Shape Priors from Scene Completion},
-  author={Yan, Xu and Gao, Jiantao and Li, Jie and Zhang, Ruimao, and Li, Zhen and Huang, Rui and Cui, Shuguang},
-  journal={AAAI Conference on Artificial Intelligence ({AAAI})},
+  author={Yan, Xu and Gao, Jiantao and Li, Jie and Zhang, Ruimao and Li, Zhen and Huang, Rui and Cui, Shuguang},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={35},
+  number={4},
+  pages={3101--3109},
   year={2021}
 }
 ```
